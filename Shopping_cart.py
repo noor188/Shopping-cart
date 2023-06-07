@@ -29,21 +29,32 @@ class Store:
             print(indx, self.__cart[indx].name)
 
 
-store = Store()
-print("Welcome to our store")
+def main():
+    store = Store()
+    print("Welcome to our store")
 
-while True:
-    store.displayCart()
-    store.calculateTotal()
-    print("Press a to add item")
-    print("press r to remove item")
-    print("Press x to exit")
+    while True:
+        store.displayCart()
+        store.calculateTotal()
+        print("Press a to add item")
+        print("press r to remove item")
+        print("Press x to exit")
 
-    userInput = input("Please enter a command")
+        userInput = input("Please enter a command")
 
-    if userInput == "x":
-        break
-    elif userInput == "a":
-        itemName = input("Please give the item a name")
-        itemPrice = input("Please give the item a price")
-        store.addToCart()
+        if userInput == "x":
+            break
+        elif userInput == "a":
+            itemName = input("Please give the item a name")
+            itemPrice = float(input("Please give the item a price"))
+            store.addToCart(Item(itemName, itemPrice))
+        elif userInput == "r":
+            indx = int(
+                input("Please provide the index of the item to remove it"))
+            store.removeFromCart(indx)
+        else:
+            print("Please enter a valid input")
+
+
+if __name__ == '__main__':
+    main()
